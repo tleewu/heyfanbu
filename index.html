@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<title>Fanbu</title>
+<meta name="description" content="A senior concierge service for Mom & Dad.">
+<meta property="og:title" content="Fanbu">
+<meta property="og:description" content="A senior concierge service for Mom & Dad.">
+<meta property="og:image" content="assets/founder.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=Inter:wght@300;400;600&display=swap">
+<style>
+/* ===== Design tokens (matched to the original heyfanbu.com) ===== */
+:root{
+  --bg:#F7F6F2;          /* page cream */
+  --band:#FFFFFF;        /* white sections */
+  --heading:#6B6967;     /* Fraunces headings */
+  --body:#8C8A88;        /* Inter body text */
+  --muted:#BFBAB6;       /* fine print */
+  --accent:#F2B266;      /* orange */
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Inter",-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--body);font-family:var(--sans);font-weight:300;font-size:17.33px;line-height:2;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1360px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right))}
+section{padding-block:88px}
+.band{background:var(--band)}
+
+/* Type */
+h1,h2{font-family:var(--serif);font-weight:300;color:var(--heading);text-align:center;text-wrap:balance}
+h1,.h-xl{font-size:69.33px;line-height:1.25;letter-spacing:-1.3px}
+h2{font-size:43.33px;line-height:1.375;letter-spacing:-.43px}
+em{font-style:italic}
+h1 em{color:var(--accent)}
+.eyebrow{font-size:17.33px;line-height:1;letter-spacing:3.47px;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:34px}
+.copy{max-width:693px;margin-inline:auto}
+.copy p+p{margin-top:24px}
+.fine{font-size:15.17px;color:var(--muted);text-align:center}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;height:61px;min-width:344px;padding:0 30px 0 34px;border-radius:6.5px;font-family:var(--sans);font-size:13px;font-weight:400;letter-spacing:3.47px;text-transform:uppercase;text-decoration:none;box-shadow:0 6.5px 23.8px rgba(107,105,103,.03);transition:transform .2s ease,filter .2s ease}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.03)}
+.btn:focus-visible{outline:2px solid var(--heading);outline-offset:3px}
+.btn svg{width:13px;height:13px;flex:none}
+.btn-solid{background:var(--accent);color:var(--bg)}
+.btn-ghost{background:#fff;color:var(--accent)}
+.center{display:flex;justify-content:center}
+
+/* Hero */
+.hero{padding-block:120px 96px}
+.hero h1{max-width:700px;margin-inline:auto}
+.hero .copy{margin-top:36px}
+.hero .center{margin-top:36px}
+
+/* How it works */
+#how{padding-block:0}
+.how{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:center;max-width:none;padding-left:0;padding-right:0}
+.how > div:first-child{padding:72px max(24px,5vw);max-width:680px;justify-self:center;width:100%}
+.how > *{min-width:0}
+.how h2{margin-bottom:40px}
+.how .media{width:100%;align-self:stretch;display:flex;align-items:center}
+.how .media video{width:80%;max-width:600px;margin:32px auto}
+.how video,.how img{width:100%;height:auto}
+.how .works{text-align:center}
+.how img.apps{width:100%;max-width:240px;margin:10px auto 0}
+
+/* Mission */
+.mission .center{margin-top:36px}
+.mission h2.h-xl{white-space:nowrap;font-size:min(69.33px,4.4vw)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:1060px;margin:56px auto 0}
+.pair > div{min-width:0;display:flex;flex-direction:column;align-items:center;gap:28px}
+.pair img{width:100%;max-width:520px;height:auto}
+
+/* FAQ */
+.faq{max-width:760px;margin-inline:auto}
+.faq h2{margin-bottom:44px}
+.faq .qa{border-top:1px solid #ECE8E3}
+.faq details{border-bottom:1px solid #ECE8E3}
+.faq summary{list-style:none;cursor:pointer;position:relative;padding:22px 44px 22px 0;font-weight:600;color:var(--heading);line-height:1.6}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:6px;top:50%;width:11px;height:11px;margin-top:-8px;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(45deg);transition:transform .25s ease}
+.faq details[open] summary::after{transform:rotate(-135deg);margin-top:-2px}
+.faq summary:hover{color:var(--accent)}
+.faq summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px}
+.faq details p{padding:0 44px 26px 0}
+.ph{background:#FDF1E1;color:#B07A33;padding:0 4px;border-radius:3px}
+
+/* Story */
+.story{display:grid;grid-template-columns:440px 1fr;gap:90px;align-items:center;max-width:1180px;margin-inline:auto}
+.story > *{min-width:0}
+.story img{width:100%;border-radius:10px}
+.story .eyebrow{text-align:left}
+.story h2{text-align:left;margin-bottom:28px}
+.story p+p{margin-top:20px}
+.story .sig{font-family:var(--serif);font-size:20px;color:var(--heading);margin-top:28px}
+.story strong{font-weight:600;color:var(--heading)}
+
+/* Footer */
+footer{padding-block:80px 56px;text-align:center}
+.contact{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 28px;margin:18px 0 40px}
+.contact a{color:var(--heading);text-decoration:none;border-bottom:1px solid #E3DFDA}
+.contact a:hover{color:var(--accent);border-color:var(--accent)}
+
+/* Fade-in on scroll (the original uses Carrd's on-visible effect) */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* Responsive */
+@media (max-width:1100px){
+  .how{grid-template-columns:1fr}
+  .how > div:first-child{padding:96px 24px 32px}
+  .story{grid-template-columns:1fr;gap:48px}
+}
+@media (max-width:736px){
+  body{font-size:16px}
+  section{padding-block:64px}
+  .hero{padding-block:88px 64px}
+  h1,.h-xl{font-size:44px;letter-spacing:-.8px}
+  h2{font-size:32px}
+  .eyebrow{font-size:14px;margin-bottom:24px}
+  .btn{min-width:0;width:100%;max-width:344px}
+  .pair{grid-template-columns:1fr;margin-top:72px}
+  .mission h2.h-xl{white-space:normal;font-size:40px}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <h1 class="reveal">We handle your <em>senior parents</em> stuff so that time is well spent</h1>
+    <div class="copy reveal"><p>A senior concierge service for Mom &amp; Dad. We take care of the dreadful admin tasks, so that they can spend more time on the things they actually enjoy.</p></div>
+    <div class="center reveal"><a class="btn btn-solid js-join" href="#join">Join the founding pilot <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a></div>
+  </div>
+</header>
+
+<!-- HOW IT WORKS -->
+<section class="band" id="how">
+  <div class="wrap how">
+    <div class="reveal">
+      <p class="eyebrow">How it works</p>
+      <h2>Fanbu is <em>just</em> a number you can message.</h2>
+      <div class="copy">
+        <p>Not another app to download. No complex setup. Nothing to learn. We sit in the middle of you &amp; your parents to get things done.</p>
+        <p class="works">Works on all the messaging platforms.</p>
+        <img class="apps" src="assets/messaging-apps.png" alt="Works with Messages, Messenger, WhatsApp and WeChat">
+      </div>
+    </div>
+    <div class="media reveal">
+      <video src="assets/fanbu-how-it-works.mp4" poster="assets/how-it-works-poster.jpg" autoplay muted loop playsinline aria-label="A daughter texts Fanbu to cancel Dad's appointment and book Mom's physical therapy; Fanbu coordinates with Mom on WeChat in Chinese and confirms."></video>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission">
+  <div class="wrap">
+    <p class="eyebrow reveal">Our mission is simple</p>
+    <h2 class="h-xl reveal">Maximize quality time for Mom &amp; Dad</h2>
+    <div class="center reveal"><a class="btn btn-solid" href="#story">Our founding story <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a></div>
+    <div class="pair">
+      <div class="reveal"><img src="assets/fanbu-more-fun.png" alt="More fun: travel itinerary and logistics, new classes and hobbies, staying connected with friends and families, event and outing planning, and more. Just ask and we'll figure something out."></div>
+      <div class="reveal"><img src="assets/fanbu-less-work.png" alt="Less work: doctor appointments and follow-ups, navigating complex insurance and bills, food and grocery deliveries, tech support, and more. Just ask and we'll figure something out."></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="band" id="faq">
+  <div class="wrap faq">
+    <h2 class="reveal">Frequently Asked Questions</h2>
+    <div class="qa">
+      <details class="reveal"><summary>1. Is Fanbu a real person?</summary><p>Both, and that's on purpose. Our AI assistant answers instantly, day or night, for questions, ideas and quick tasks. Behind it, every family has a dedicated concierge: a real person who knows your parents, owns every request, and personally handles anything involving money, health or commitments. When something needs your concierge, we'll say so and tell you when to expect them. And you or your parents can ask for a person anytime.</p></details>
+      <details class="reveal"><summary>2. Why can't I just use an AI assistant for this?</summary><p>Fair question. It's where we started. An AI assistant can draft an email or find a phone number. But the hard parts land on your parents: a pharmacy that needs a callback, a portal password that's expired, a clinic that only speaks to the patient, a form that has to be signed. Fanbu handles those steps from start to finish, so neither you nor your parents get stuck halfway.</p></details>
+      <details class="reveal"><summary>3. How does Fanbu's pricing compare to other senior concierge services?</summary><p>Two models currently exist. (1) By the hour, you're paying $40 per hour. The meter runs even for the unproductive minute (eg. on hold). (2) By the project. You hire someone for one job, like finding a home aide or sorting out an insurance problem, and get a new quote each time. That works for big one-off jobs, but small everyday tasks rarely get done because they're not worth quoting. Fanbu: one flat monthly price, <span class="ph">[$X/month]</span>. Big jobs and small ones are included. You never have to decide whether a request is "worth it," and there are no surprise bills.</p></details>
+      <details class="reveal"><summary>4. How do you handle passwords and sensitive information?</summary><p>We start with official access, not passwords. For patient portals, pharmacies and insurers, your parent adds us as an approved caregiver, so we log in as ourselves and they can remove us anytime. When an office needs your parent's permission, they sign it once and we keep it on file. If a task needs something more sensitive, like a Social Security number for a form, we ask for it only for that task, keep it in an encrypted password manager (never email or texts), and delete it when you ask. We never take bank logins.</p></details>
+      <details class="reveal"><summary>5. Is there anything you don't do?</summary><p>Yes. We don't give medical, legal or financial advice. We'll connect you with licensed professionals for that. We don't handle medications or touch your parents' money. And we're not an emergency service: in an emergency, always call 911 first, then let us know and we'll take care of the follow-up.</p></details>
+      <details class="reveal"><summary>6. Can I pause?</summary><p>Yes. Pause any time for up to <span class="ph">[X months]</span>, for travel, a hospital stay or a quiet stretch, and pick up where you left off.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDING STORY -->
+<section id="story">
+  <div class="wrap story">
+    <img class="reveal" src="assets/founder.jpg" alt="Theo with his wife Dana and her parents on a hike in the Swiss Alps.">
+    <div class="reveal">
+      <p class="eyebrow">Our founding story</p>
+      <h2>A Story about Empowerment &amp; Agency</h2>
+      <p>My mother-in-law has always leaned on my wife, Dana, for help: the calls, the forms, anything in English. Dana never minded, but it added up. On top of a new baby, a business and a household, she was the one remembering Dad's dermatologist appointment, Mom's physical therapy, and when to check in for flights.</p>
+      <p>So I set my mother-in-law up with an AI assistant. She'd been juggling one app for cheap flights and another for cruises. Within minutes, she lit up: <strong><span class="ph">[her WeChat quote]</span></strong> It did the research, answered her follow-up questions, and suddenly she could plan on her own.</p>
+      <p>Then it reached checkout. "Enter your card." "Take over the browser." The spark turned into "Theo, can you take over?"</p>
+      <p>I started my career in education because I believe the heart of learning is agency. I spent years at Meta building AI and trust &amp; safety products. Fanbu brings both together: AI that gives your parents their independence back, and a real person who steps in at the scary moments.</p>
+      <p>In Chinese, 反哺 (fǎnbǔ) means giving back the care we were given. Now that I'm a dad, I feel that more than ever.</p>
+      <p class="sig">Theo Wu, founder · San Diego</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA + FOOTER -->
+<footer class="band" id="join">
+  <div class="wrap">
+    <h2 class="reveal">Ready for more time together?</h2>
+    <div class="center reveal" style="margin-top:36px"><a class="btn btn-solid js-join" href="#join">Join the founding pilot <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a></div>
+    <p class="fine" style="margin-top:72px">Message us on</p>
+    <nav class="contact" aria-label="Contact">
+      <a href="#" data-contact="sms">Message</a>
+      <a href="#" data-contact="whatsapp">WhatsApp</a>
+      <a href="#" data-contact="wechat">WeChat</a>
+      <a href="#" data-contact="messenger">Messenger</a>
+    </nav>
+    <p class="fine">In an emergency, always call 911 first.</p>
+    <p class="fine">© 2026 Fanbu. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+/* ===== Fill these in ===== */
+var JOIN_URL = "";              // Stripe Payment Link or sign-up form, e.g. https://buy.stripe.com/...
+var CONTACT = {
+  sms: "",                      // e.g. "sms:+16195550123"
+  whatsapp: "",                 // e.g. "https://wa.me/16195550123"
+  wechat: "",                   // e.g. a link to your WeChat QR code image
+  messenger: ""                 // e.g. "https://m.me/yourpage"
+};
+
+if (JOIN_URL) document.querySelectorAll('.js-join').forEach(function(a){ a.href = JOIN_URL; });
+document.querySelectorAll('[data-contact]').forEach(function(a){
+  var url = CONTACT[a.getAttribute('data-contact')];
+  if (url) { a.href = url; if (/^https?:/.test(url)) { a.target = "_blank"; a.rel = "noopener"; } }
+});
+
+/* Fade sections in as they scroll into view */
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { rootMargin: '0px 0px -8% 0px' });
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
+</html>

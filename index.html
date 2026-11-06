@@ -58,6 +58,10 @@ h1 em{color:var(--accent)}
 .hero h1{max-width:1120px;margin-inline:auto}
 .hero .copy{margin-top:36px}
 .hero .center{margin-top:36px}
+.btn .lbl,.btn .price{white-space:nowrap}
+.btn .dot{margin:0 6px 0 -2px}
+.btn s{opacity:.75;text-decoration-thickness:1.5px}
+.offer{margin-top:16px;text-align:center;font-size:14px;line-height:1.7;letter-spacing:.3px;color:var(--body)}
 
 /* How it works */
 #how{padding-block:0}
@@ -129,6 +133,8 @@ footer{padding-block:80px 56px;text-align:center}
   h2{font-size:32px}
   .eyebrow{font-size:14px;margin-bottom:24px}
   .btn{min-width:0;width:100%;max-width:344px}
+  .hero .btn{height:auto;min-height:61px;padding:12px 18px;flex-wrap:wrap;column-gap:10px;row-gap:4px;line-height:1.5;letter-spacing:2.6px}
+  .hero .btn .dot{display:none}
   .pair{grid-template-columns:1fr;margin-top:72px}
   .mission h2.h-xl{white-space:normal;font-size:40px}
 }
@@ -141,7 +147,8 @@ footer{padding-block:80px 56px;text-align:center}
   <div class="wrap">
     <h1 class="reveal">We handle your <em>senior parents</em> stuff so that time is well spent</h1>
     <div class="copy reveal"><p>A senior concierge service for Mom &amp; Dad. We take care of the dreadful admin tasks, so that they can spend more time on the things they actually enjoy.</p></div>
-    <div class="center reveal"><a class="btn btn-solid js-join" href="#join">Join the founding pilot <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a></div>
+    <div class="center reveal"><a class="btn btn-solid js-join" href="#join"><span class="lbl">Join our founding pilot</span><span class="price"><span class="dot" aria-hidden="true">·</span> <s>$250</s>&nbsp;$100/mo</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a></div>
+    <p class="offer reveal">Founding price locked in for life &middot; 8 spots left &middot; Pause or cancel anytime</p>
   </div>
 </header>
 

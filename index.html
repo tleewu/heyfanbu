@@ -30,7 +30,7 @@ body{background:var(--bg);color:var(--body);font-family:var(--sans);font-weight:
 img,video{max-width:100%;display:block}
 a{color:inherit}
 .wrap{max-width:1360px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right))}
-section{padding-block:88px}
+section{padding-block:64px}
 .band{background:var(--band)}
 
 /* Type */
@@ -54,7 +54,7 @@ h1 em{color:var(--accent)}
 .center{display:flex;justify-content:center}
 
 /* Hero */
-.hero{padding-block:120px 96px}
+.hero{padding-block:104px 80px}
 .hero h1{max-width:1180px;margin-inline:auto}
 .rot{display:inline-block;position:relative;vertical-align:bottom;height:1.25em;overflow:hidden;color:var(--accent);font-style:italic;white-space:nowrap;transition:width .55s cubic-bezier(.4,0,.2,1)}
 .rot span{position:absolute;left:0;top:0;padding-right:.08em;white-space:nowrap;opacity:0;transform:translateY(100%);transition:transform .6s cubic-bezier(.4,0,.2,1),opacity .6s ease}
@@ -85,7 +85,7 @@ h1 em{color:var(--accent)}
 /* Steps */
 .steps h2 em{color:var(--accent)}
 .steps .lede{max-width:640px;text-wrap:balance;margin:28px auto 0;text-align:center}
-.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px;max-width:1120px;margin:72px auto 0;text-align:center}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px;max-width:1120px;margin:44px auto 0;text-align:center}
 .cols > div{min-width:0;display:flex;flex-direction:column;align-items:center}
 .num{font-family:var(--serif);font-weight:300;font-size:56px;line-height:1;color:var(--accent);letter-spacing:-.5px}
 .cols h3{font-family:var(--serif);font-weight:300;font-size:32px;line-height:1.3;color:var(--heading);margin-top:24px;text-wrap:balance}
@@ -100,7 +100,7 @@ h1 em{color:var(--accent)}
 
 /* FAQ */
 .faq{max-width:760px;margin-inline:auto}
-.faq h2{margin-bottom:44px}
+.faq h2{margin-bottom:32px}
 .faq .qa{border-top:1px solid #ECE8E3}
 .faq details{border-bottom:1px solid #ECE8E3}
 .faq summary{list-style:none;cursor:pointer;position:relative;padding:22px 44px 22px 0;font-weight:600;color:var(--heading);line-height:1.6}
@@ -126,7 +126,7 @@ h1 em{color:var(--accent)}
 .story strong{font-weight:600;color:var(--heading)}
 
 /* Meaning of Fanbu */
-#meaning{padding-top:24px}
+#meaning{padding-top:8px}
 .story.flip{grid-template-columns:1fr 520px}
 .sub-h{font-family:var(--serif);font-weight:300;font-size:32px;line-height:1.3;color:var(--heading);margin-bottom:18px;text-wrap:balance}
 .crows{width:100%;height:auto;display:block}
@@ -174,7 +174,7 @@ h1 em{color:var(--accent)}
 @media (prefers-reduced-motion:reduce){.e-stage,.e-sun,.e-leaf,.e-pyoung,.e-pold,.e-plean,.e-poldbob,.e-berry1,.e-baby,.e-nest,.e-child,.e-clean,.e-fwing,.e-flap,.e-berry2,.e-heart,{animation:none}.e-pyoung,.e-baby,.e-nest,.e-berry1,.e-fwing,.e-heart{opacity:0}}
 
 /* Footer */
-footer{padding-block:80px 56px;text-align:center}
+footer{padding-block:64px 44px;text-align:center}
 .contact{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 28px;margin:18px 0 40px}
 .contact a{color:var(--heading);text-decoration:none;border-bottom:1px solid #E3DFDA}
 .contact a:hover{color:var(--accent);border-color:var(--accent)}
@@ -254,7 +254,7 @@ footer{padding-block:80px 56px;text-align:center}
 <!-- FOUNDING STORY -->
 <section class="band" id="story">
   <div class="wrap">
-  <p class="eyebrow reveal" style="margin-bottom:56px">The Fanbu Story</p>
+  <p class="eyebrow reveal" style="margin-bottom:36px">The Fanbu Story</p>
   <div class="story">
     <img class="reveal" src="assets/founder.jpg" alt="Theo with his wife Dana and her parents on a hike in the Swiss Alps.">
     <div class="reveal">
@@ -269,14 +269,14 @@ footer{padding-block:80px 56px;text-align:center}
 <!-- MEANING OF FANBU -->
 <section class="band" id="meaning">
   <div class="wrap">
-  <h3 class="sub-h reveal" style="text-align:center;margin-bottom:48px">The Meaning of Fanbu</h3>
+  <h3 class="sub-h reveal" style="text-align:center;margin-bottom:20px">The Meaning of Fanbu</h3>
   <div class="story flip">
     <div class="reveal">
       <p>Fanbu comes from the Chinese word 反哺 (fǎnbǔ), which translates to &ldquo;feeding in return.&rdquo;</p>
       <p>It comes from an old legend (not scientific fact) about young crows that grow up &amp; bring food back to their aging parents.</p>
       <p>In Chinese culture, it represents duty: a duty to give back the care we were given. That&rsquo;s what we help families do.</p>
     </div>
-    <div class="reveal"><svg class="crows" viewBox="0 0 600 380" role="img" aria-label="A parent crow feeds its baby in the nest. Time passes: the baby grows up and the parent grows old. The grown crow flies home and feeds its aging parent.">
+    <div class="reveal"><svg class="crows" viewBox="0 30 600 320" role="img" aria-label="A parent crow feeds its baby in the nest. Time passes: the baby grows up and the parent grows old. The grown crow flies home and feeds its aging parent.">
 <g class="e-stage">
 <circle class="e-sun" cx="90" cy="110" r="46" fill="#FBE3C2"></circle>
 <path class="branch" d="M40 322 Q300 308 560 326"></path>

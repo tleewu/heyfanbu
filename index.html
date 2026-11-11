@@ -124,6 +124,53 @@ h1 em{color:var(--accent)}
 .story .sig{font-family:var(--serif);font-size:20px;color:var(--heading);margin-top:28px}
 .story strong{font-weight:600;color:var(--heading)}
 
+/* Meaning of Fanbu */
+#meaning{padding-top:24px}
+.story.flip{grid-template-columns:1fr 520px}
+.crows{width:100%;height:auto;display:block}
+.e-stage{animation:e-stage 15s linear infinite}
+.e-sun{animation:e-sun 15s ease-in-out infinite}
+.e-leaf{animation:e-leaf 15s ease-in-out infinite}
+.e-pyoung{animation:e-pyoung 15s ease-in-out infinite}
+.e-pold{animation:e-pold 15s ease-in-out infinite}
+.e-plean{transform-origin:0 0;animation:e-plean 15s ease-in-out infinite}
+.e-poldbob{transform-origin:0 0;animation:e-poldbob 15s ease-in-out infinite}
+.e-berry1{transform-box:fill-box;transform-origin:center;animation:e-berry1 15s ease-in-out infinite}
+.e-baby{animation:e-baby 15s ease-in-out infinite}
+.e-nest{animation:e-nest 15s ease-in-out infinite}
+.e-child{animation:e-child 15s cubic-bezier(.45,.05,.35,1) infinite}
+.e-clean{transform-origin:0 0;animation:e-clean 15s ease-in-out infinite}
+.e-fwing{animation:e-fwing 15s linear infinite}
+.e-flap{transform-box:fill-box;transform-origin:85% 100%;animation:e-flap .38s ease-in-out infinite alternate}
+.e-berry2{transform-box:fill-box;transform-origin:center;animation:e-berry2 15s ease-in-out infinite}
+.e-heart{transform-box:fill-box;transform-origin:center;animation:e-heart 15s ease-out infinite}
+.leg{stroke:#1A181E;stroke-width:2.6;stroke-linecap:round;fill:none}
+.leg-old{stroke:#4E4B52;stroke-width:2.6;stroke-linecap:round;fill:none}
+.bill{stroke:#3B3942;stroke-width:1.2;fill:none}
+.sheen{stroke:#4B5470;stroke-width:3;stroke-linecap:round;fill:none;opacity:.7}
+.fluff{stroke:#3E3A44;stroke-width:2;stroke-linecap:round;fill:none}
+.twig{stroke:#7A5E44;stroke-width:2.5;stroke-linecap:round;fill:none}
+.branch{stroke:#8A6E52;stroke-width:8;stroke-linecap:round;fill:none}
+.grey-tuft{stroke:#A9A5AD;stroke-width:2;stroke-linecap:round;fill:none}
+.lid{stroke:#3A3840;stroke-width:1.6;stroke-linecap:round;fill:none}
+@keyframes e-stage{0%{opacity:0}3%,93%{opacity:1}100%{opacity:0}}
+@keyframes e-sun{0%{transform:translate(0,40px)}45%{transform:translate(160px,-30px)}100%{transform:translate(330px,60px)}}
+@keyframes e-leaf{0%,32%{fill:#9DB08A}46%,100%{fill:#E2A55E}}
+@keyframes e-pyoung{0%,34%{opacity:1}44%,100%{opacity:0}}
+@keyframes e-pold{0%,34%{opacity:0}44%,100%{opacity:1}}
+@keyframes e-plean{0%,8%{transform:rotate(0)}15%,21%{transform:rotate(24deg)}28%,100%{transform:rotate(0)}}
+@keyframes e-berry1{0%,4%{transform:scale(0);opacity:0}7%,18%{transform:scale(1);opacity:1}21%,100%{transform:scale(0);opacity:0}}
+@keyframes e-baby{0%{transform:translateY(0);opacity:1}6%{transform:translateY(-4px)}9%{transform:translateY(0)}12%{transform:translateY(-5px)}15%{transform:translateY(0)}19%{transform:translateY(-3px)}22%{transform:translateY(0)}25%{transform:translateY(-6px)}28%{transform:translateY(0);opacity:1}36%,100%{transform:translateY(0);opacity:0}}
+@keyframes e-nest{0%,36%{opacity:1}44%,100%{opacity:0}}
+@keyframes e-child{0%,48%{transform:translate(280px,-230px);opacity:0}50%{opacity:1}62%,100%{transform:translate(0,0);opacity:1}}
+@keyframes e-clean{0%,64%{transform:rotate(0)}69%,74%{transform:rotate(6deg)}80%,100%{transform:rotate(0)}}
+@keyframes e-fwing{0%,60%{opacity:1}63%,100%{opacity:0}}
+@keyframes e-flap{from{transform:scaleY(1)}to{transform:scaleY(-.55)}}
+@keyframes e-berry2{0%,70%{transform:translate(0,0) scale(1);opacity:1}74%{transform:translate(0,0) scale(0);opacity:0}100%{transform:scale(0);opacity:0}}
+@keyframes e-poldbob{0%,73%{transform:translateY(0)}77%{transform:translateY(-6px)}81%{transform:translateY(0)}84%{transform:translateY(-3px)}87%,100%{transform:translateY(0)}}
+@keyframes e-heart{0%,74%{transform:translateY(0) scale(.4);opacity:0}79%{transform:translateY(-8px) scale(1);opacity:1}92%{transform:translateY(-40px) scale(1);opacity:0}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.e-stage,.e-sun,.e-leaf,.e-pyoung,.e-pold,.e-plean,.e-poldbob,.e-berry1,.e-baby,.e-nest,.e-child,.e-clean,.e-fwing,.e-flap,.e-berry2,.e-heart,{animation:none}.e-pyoung,.e-baby,.e-nest,.e-berry1,.e-fwing,.e-heart{opacity:0}}
+
 /* Footer */
 footer{padding-block:80px 56px;text-align:center}
 .contact{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 28px;margin:18px 0 40px}
@@ -139,7 +186,7 @@ footer{padding-block:80px 56px;text-align:center}
 @media (max-width:1100px){
   .how{grid-template-columns:1fr}
   .how > div:first-child{padding:96px 24px 32px}
-  .story{grid-template-columns:1fr;gap:48px}
+  .story,.story.flip{grid-template-columns:1fr;gap:48px}
 }
 @media (max-width:736px){
   body{font-size:16px}
@@ -227,6 +274,93 @@ footer{padding-block:80px 56px;text-align:center}
       <p>We were always happy to help, but <strong>everything changed when we had our first child.</strong> Suddenly, Dana found herself balancing being a mom, a wife, and a businesswoman, while also rediscovering who she is postpartum. Even though she wanted to, there weren't enough hours in the day to be proactive with her parents, especially as the world becomes increasingly complex.</p>
       <p>That's why I built Fanbu. For Dana, she gets back time while keeping peace of mind as a devoted daughter. For her parents, they get to achieve their goals without feeling like a burden.</p>
     </div>
+  </div>
+  </div>
+</section>
+
+<!-- MEANING OF FANBU -->
+<section id="meaning">
+  <div class="wrap">
+  <p class="eyebrow reveal" style="margin-bottom:56px">The Meaning of Fanbu</p>
+  <div class="story flip">
+    <div class="reveal">
+      <p>Fanbu comes from the Chinese word 反哺 (fǎnbǔ), which translates to &ldquo;feeding in return.&rdquo;</p>
+      <p>It comes from an old legend (not scientific fact) about young crows that grow up &amp; bring food back to their aging parents.</p>
+      <p>In Chinese culture, it represents duty: a duty to give back the care we were given. That&rsquo;s what we help families do.</p>
+    </div>
+    <div class="reveal"><svg class="crows" viewBox="0 0 600 380" role="img" aria-label="A parent crow feeds its baby in the nest. Time passes: the baby grows up and the parent grows old. The grown crow flies home and feeds its aging parent.">
+<g class="e-stage">
+<circle class="e-sun" cx="90" cy="110" r="46" fill="#FBE3C2"></circle>
+<path class="branch" d="M40 322 Q300 308 560 326"></path>
+<path class="twig" d="M500 322 Q520 298 548 292"></path>
+<ellipse class="e-leaf" cx="548" cy="290" rx="13" ry="6" transform="rotate(-25 548 290)"></ellipse>
+<ellipse class="e-leaf" cx="520" cy="300" rx="11" ry="5" transform="rotate(30 520 300)"></ellipse>
+<ellipse class="e-leaf" cx="70" cy="316" rx="11" ry="5" transform="rotate(-35 70 316)"></ellipse>
+
+<g transform="translate(220 320) scale(1.5)">
+<g class="e-pyoung">
+<g class="e-plean">
+<path d="M62,-78 Q52,-86 40,-87 Q32,-98 16,-99 Q0,-98 -8,-86 Q-30,-70 -56,-46 L-88,-28 L-84,-20 L-54,-30 Q-30,-18 -2,-20 Q22,-26 30,-46 Q33,-62 40,-73 L60,-76 Z" fill="#24222A"></path>
+<path d="M10,-76 Q-18,-80 -46,-52 L-80,-30 L-70,-30 Q-40,-36 -14,-38 Q6,-44 12,-60 Z" fill="#17161B"></path>
+<path class="sheen" d="M2,-70 Q-20,-70 -38,-52"></path>
+<path class="bill" d="M41,-79 L60,-77"></path>
+<path d="M40,-86 Q45,-86 48,-83 L40,-82 Z" fill="#17161B"></path>
+<circle cx="25" cy="-88" r="2.6" fill="#0B0A0D"></circle>
+<circle cx="25.8" cy="-88.8" r=".9" fill="#C9CDD8"></circle>
+<path class="leg" d="M-6,-21 L-8,0 M6,-22 L6,0 M-15,0 L1,0 M-1,0 L13,0"></path>
+<circle class="e-berry1" cx="64" cy="-77" r="4" fill="#F2B266"></circle>
+</g>
+</g>
+<g class="e-pold">
+<g class="e-poldbob">
+<g transform="rotate(6)">
+<path d="M62,-78 Q52,-86 40,-87 Q32,-98 16,-99 Q0,-98 -8,-86 Q-30,-70 -56,-46 L-86,-30 L-82,-22 L-54,-30 Q-30,-18 -2,-20 Q22,-26 30,-46 Q33,-62 40,-73 L60,-76 Z" fill="#6E6A72"></path>
+<path d="M10,-76 Q-18,-80 -46,-52 L-78,-32 L-68,-31 Q-40,-36 -14,-38 Q6,-44 12,-60 Z" fill="#5A575F"></path>
+<path d="M-8,-86 Q-2,-96 10,-98 Q2,-92 2,-84 Q-4,-80 -8,-86Z" fill="#A9A5AD"></path>
+<path class="grey-tuft" d="M-12,-80 l-6,-3 M-14,-76 l-6,-1"></path>
+<path d="M40,-86 Q45,-86 48,-83 L40,-82 Z" fill="#5A575F"></path>
+<path class="lid" d="M22,-88 Q25,-86 28,-88"></path>
+</g>
+<path class="leg-old" d="M-6,-21 L-8,0 M6,-22 L6,0 M-15,0 L1,0 M-1,0 L13,0"></path>
+</g>
+</g>
+</g>
+
+<g class="e-baby">
+<g transform="translate(378 318) scale(-1.3 1.3)">
+<ellipse cx="0" cy="-16" rx="17" ry="15" fill="#3E3A44"></ellipse>
+<circle cx="8" cy="-34" r="11" fill="#3E3A44"></circle>
+<path class="fluff" d="M0,-44 l-3,-6 M5,-45 l0,-7 M10,-44 l3,-6"></path>
+<polygon points="16,-39 29,-52 20,-35" fill="#2A2730"></polygon>
+<polygon points="17,-31 31,-38 19,-28" fill="#2A2730"></polygon>
+<circle cx="11" cy="-37" r="1.8" fill="#0B0A0D"></circle>
+</g>
+</g>
+<g class="e-nest">
+<path d="M340 316 Q378 336 416 316 Q412 330 378 333 Q344 330 340 316Z" fill="#8A6E52"></path>
+<path class="twig" d="M342 318 L362 322 M372 326 L396 321 M388 330 L412 318 M350 326 L370 330"></path>
+</g>
+
+<g class="e-child">
+<g transform="translate(430 320) scale(-1.45 1.45)">
+<g class="e-clean">
+<path d="M62,-78 Q52,-86 40,-87 Q32,-98 16,-99 Q0,-98 -8,-86 Q-30,-70 -56,-46 L-88,-28 L-84,-20 L-54,-30 Q-30,-18 -2,-20 Q22,-26 30,-46 Q33,-62 40,-73 L60,-76 Z" fill="#24222A"></path>
+<path d="M10,-76 Q-18,-80 -46,-52 L-80,-30 L-70,-30 Q-40,-36 -14,-38 Q6,-44 12,-60 Z" fill="#17161B"></path>
+<path class="sheen" d="M2,-70 Q-20,-70 -38,-52"></path>
+<path class="bill" d="M41,-79 L60,-77"></path>
+<path d="M40,-86 Q45,-86 48,-83 L40,-82 Z" fill="#17161B"></path>
+<circle cx="25" cy="-88" r="2.6" fill="#0B0A0D"></circle>
+<circle cx="25.8" cy="-88.8" r=".9" fill="#C9CDD8"></circle>
+<path class="leg" d="M-6,-21 L-8,0 M6,-22 L6,0 M-15,0 L1,0 M-1,0 L13,0"></path>
+<g class="e-fwing"><path class="e-flap" d="M8,-66 Q-6,-118 -44,-148 L-36,-134 L-52,-130 L-34,-118 L-48,-110 L-28,-104 L-38,-94 Q-14,-80 -16,-62 Z" fill="#17161B"></path></g>
+<circle class="e-berry2" cx="64" cy="-77" r="4" fill="#F2B266"></circle>
+</g>
+</g>
+</g>
+
+<path class="e-heart" d="M318 186 c-4 -7 -14 -6 -14 2 c0 6 8 11 14 15 c6 -4 14 -9 14 -15 c0 -8 -10 -9 -14 -2z" fill="#F2B266"></path>
+</g>
+</svg></div>
   </div>
   </div>
 </section>

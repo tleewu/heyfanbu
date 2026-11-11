@@ -55,7 +55,14 @@ h1 em{color:var(--accent)}
 
 /* Hero */
 .hero{padding-block:120px 96px}
-.hero h1{max-width:1120px;margin-inline:auto}
+.hero h1{max-width:1180px;margin-inline:auto}
+.rot{display:inline-block;position:relative;vertical-align:bottom;height:1.25em;overflow:hidden;color:var(--accent);font-style:italic;white-space:nowrap;transition:width .55s cubic-bezier(.4,0,.2,1)}
+.rot span{position:absolute;left:0;top:0;padding-right:.08em;white-space:nowrap;opacity:0;transform:translateY(100%);transition:transform .6s cubic-bezier(.4,0,.2,1),opacity .6s ease}
+.rot span.on{position:relative;opacity:1;transform:none}
+.rot span.out{opacity:0;transform:translateY(-100%)}
+.rot.js span.on{position:absolute}
+.nw{white-space:nowrap}
+@media (prefers-reduced-motion:reduce){.rot span{transition:none}.rot{transition:none}}
 .hero .copy{margin-top:36px}
 .hero .center{margin-top:36px}
 .btn .lbl,.btn .price{white-space:nowrap}
@@ -130,6 +137,7 @@ footer{padding-block:80px 56px;text-align:center}
   section{padding-block:64px}
   .hero{padding-block:88px 64px}
   h1,.h-xl{font-size:44px;letter-spacing:-.8px}
+  .hero h1{font-size:min(44px,10vw)}
   h2{font-size:32px}
   .eyebrow{font-size:14px;margin-bottom:24px}
   .btn{min-width:0;width:100%;max-width:344px}
@@ -145,7 +153,7 @@ footer{padding-block:80px 56px;text-align:center}
 <!-- HERO -->
 <header class="hero">
   <div class="wrap">
-    <h1 class="reveal">We handle your <em>senior parents</em> stuff so that time is well spent</h1>
+    <h1 class="reveal" aria-label="We take care of your senior parents’ doctor appointments, insurance paperwork, tech troubles, grocery runs, travel plans and entire to-do list, happily and proudly."><span aria-hidden="true">We take care of your senior parents&rsquo; <span class="nw"><span class="rot" id="rot"><span class="on">doctor appointments</span><span>insurance paperwork</span><span>tech troubles</span><span>grocery runs</span><span>travel plans</span><span>entire to-do list</span></span>,</span> happily and proudly.</span></h1>
     <div class="copy reveal"><p>A senior concierge service for Mom &amp; Dad. We take care of the dreadful admin tasks, so that they can spend more time on the things they actually enjoy.</p></div>
     <div class="center reveal"><a class="btn btn-solid js-join" href="#join"><span class="lbl">Join our founding pilot</span><span class="price"><span class="dot" aria-hidden="true">·</span> <s>$250</s>&nbsp;$100/mo</span></a></div>
     <p class="offer reveal">8 spots left &middot; Lifetime founding price &middot; Pause/cancel anytime</p>
@@ -238,6 +246,25 @@ document.querySelectorAll('[data-contact]').forEach(function(a){
   var url = CONTACT[a.getAttribute('data-contact')];
   if (url) { a.href = url; if (/^https?:/.test(url)) { a.target = "_blank"; a.rel = "noopener"; } }
 });
+
+/* Rotating task in the headline: five examples, then the whole to-do list */
+(function(){
+  var rot = document.getElementById('rot'); if (!rot) return;
+  var items = rot.children, i = 0, n = items.length;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { items[0].classList.remove('on'); items[n-1].classList.add('on'); return; }
+  rot.classList.add('js');
+  function fit(){ rot.style.width = items[i].getBoundingClientRect().width + 'px'; }
+  function next(){
+    var cur = items[i]; cur.classList.remove('on'); cur.classList.add('out');
+    setTimeout(function(){ cur.classList.remove('out'); }, 650);
+    i = (i + 1) % n; items[i].classList.add('on'); fit();
+    setTimeout(next, i === n - 1 ? 4200 : 2200);
+  }
+  fit(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  window.addEventListener('resize', fit);
+  setTimeout(next, 2200);
+})();
 
 /* Fade sections in as they scroll into view */
 (function(){

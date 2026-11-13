@@ -82,6 +82,34 @@ h1 em{color:var(--accent)}
 .how .works{text-align:center}
 .how img.apps{width:100%;max-width:240px;margin:28px auto 0}
 
+/* Real life scenarios */
+.scen h2 em{color:var(--accent)}
+.scen .lede{max-width:620px;margin:20px auto 0;text-align:center;text-wrap:balance}
+.scen-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:40px}
+.scen-tab{min-height:48px;padding:0 24px;border-radius:6.5px;border:1.5px solid #F1DFC6;background:#fff;color:#C98A3C;font-family:var(--sans);font-size:13px;font-weight:400;letter-spacing:2.6px;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.scen-tab:hover{border-color:var(--accent)}
+.scen-tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.scen-tab:focus-visible{outline:2px solid var(--heading);outline-offset:3px}
+.scen-body{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:56px;max-width:1080px;margin:48px auto 0;align-items:start}
+.scen-card{background:#fff;border-radius:16px;padding:32px;box-shadow:0 18px 40px -28px rgba(107,105,103,.45);display:flex;flex-direction:column;gap:18px;line-height:1.5}
+.scen-label{font-size:12px;letter-spacing:2.6px;text-transform:uppercase;color:#C98A3C}
+.scen-bubble{align-self:flex-end;max-width:92%;font-size:16px;line-height:1.45;padding:12px 16px;border-radius:20px 20px 6px 20px;color:#fff;background:#1E86FF}
+.scen-bubble.wc{background:#95EC69;color:#1F1F1F;border-radius:6px}
+.scen-rule{height:1px;background:#EFEAE3}
+.scen-outcome{font-family:var(--serif);font-weight:300;font-size:26px;line-height:1.3;color:var(--heading);text-wrap:balance}
+.scen-stats div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px solid #EFEAE3;font-size:15px}
+.scen-stats span:last-child{color:var(--heading);font-weight:600;text-align:right}
+.scen-steps{list-style:none;display:flex;flex-direction:column}
+.scen-steps li{display:flex;gap:20px}
+.scen-rail{display:flex;flex-direction:column;align-items:center;flex:none;width:16px}
+.scen-dot{width:14px;height:14px;border-radius:50%;border:3px solid var(--accent);background:var(--bg);margin-top:5px;flex:none}
+.scen-line{flex:1;width:2px;background:#EAE3D9;margin-top:4px}
+.scen-steps li:last-child .scen-line{display:none}
+.scen-txt{min-width:0;padding-bottom:28px;display:flex;flex-direction:column;gap:4px}
+.scen-when{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#C98A3C;font-weight:600;line-height:1.7}
+.scen-title{font-family:var(--serif);font-weight:300;font-size:22px;line-height:1.3;color:var(--heading)}
+.scen-detail{font-size:16px;line-height:1.7}
+
 /* Steps */
 .steps h2 em{color:var(--accent)}
 .steps .lede{max-width:640px;text-wrap:balance;margin:28px auto 0;text-align:center}
@@ -186,6 +214,7 @@ footer{padding-block:64px 44px;text-align:center}
 
 /* Responsive */
 @media (max-width:1100px){
+  .scen-body{grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:40px}
   .how{grid-template-columns:1fr}
   .how > div:first-child{padding:96px 24px 32px}
   .story,.story.flip{grid-template-columns:1fr;gap:48px}
@@ -203,6 +232,9 @@ footer{padding-block:64px 44px;text-align:center}
   .hero .btn .dot,#join .btn .dot{display:none}
   .pair{grid-template-columns:1fr;margin-top:72px}
   .cols{grid-template-columns:1fr;gap:48px;margin-top:48px}
+  .scen-body{grid-template-columns:1fr;gap:40px;margin-top:32px}
+  .scen-card{padding:24px}
+  .scen-tab{flex:1 1 100%;max-width:344px}
   .num{font-size:48px}
   .cols h3,.sub-h{font-size:28px}
   .cols h3{margin-top:16px}
@@ -239,7 +271,28 @@ footer{padding-block:64px 44px;text-align:center}
 </section>
 
 <!-- STEPS -->
-<section class="steps">
+<!-- REAL LIFE SCENARIOS -->
+<section id="scenarios">
+  <div class="wrap scen">
+    <p class="eyebrow reveal">Real life scenarios</p>
+    <h2 class="reveal">One text from you. <em>We handle the rest.</em></h2>
+    <p class="lede reveal">Peace of mind that your parents are taken care of. Here&rsquo;s what that looks like.</p>
+    <div class="scen-tabs reveal" role="tablist" aria-label="Example requests" id="scenTabs"></div>
+    <div class="scen-body reveal">
+      <div class="scen-card" role="tabpanel">
+        <span class="scen-label">The ask</span>
+        <span class="scen-bubble" id="scenAsk"></span>
+        <div class="scen-rule"></div>
+        <span class="scen-label">The &ldquo;Peace of Mind&rdquo; Outcome</span>
+        <p class="scen-outcome" id="scenOutcome"></p>
+        <div class="scen-stats" id="scenStats"></div>
+      </div>
+      <ol class="scen-steps" id="scenSteps"></ol>
+    </div>
+  </div>
+</section>
+
+<section class="steps band">
   <div class="wrap">
     <p class="eyebrow reveal">How we work</p>
     <h2 class="reveal">We treat your parents as if they were ours.</h2>
@@ -252,7 +305,7 @@ footer{padding-block:64px 44px;text-align:center}
 </section>
 
 <!-- FOUNDING STORY -->
-<section class="band" id="story">
+<section id="story">
   <div class="wrap">
   <p class="eyebrow reveal" style="margin-bottom:14px">The Fanbu Story</p>
   <h3 class="sub-h reveal" style="text-align:center;margin-bottom:40px">A Duty to our Parents</h3>
@@ -268,7 +321,7 @@ footer{padding-block:64px 44px;text-align:center}
 </section>
 
 <!-- MEANING OF FANBU -->
-<section class="band" id="meaning">
+<section id="meaning">
   <div class="wrap">
   <div class="story flip">
     <div class="reveal">
@@ -352,7 +405,7 @@ footer{padding-block:64px 44px;text-align:center}
 </section>
 
 <!-- FAQ -->
-<section id="faq">
+<section class="band" id="faq">
   <div class="wrap faq">
     <h2 class="reveal">Frequently Asked Questions</h2>
     <div class="qa">
@@ -366,7 +419,7 @@ footer{padding-block:64px 44px;text-align:center}
 </section>
 
 <!-- CLOSING CTA + FOOTER -->
-<footer class="band" id="join">
+<footer id="join">
   <div class="wrap">
     <h2 class="reveal">Not sure where to start?</h2>
     <p class="reveal" style="text-align:center;margin-top:16px">If you don&rsquo;t use Fanbu (or only minimally), we&rsquo;ll proactively refund you. No questions asked.</p>
@@ -409,6 +462,75 @@ document.querySelectorAll('[data-contact]').forEach(function(a){
   fit(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
   window.addEventListener('resize', fit);
   setTimeout(next, 2200);
+})();
+
+/* Real life scenarios: tabbed timelines */
+(function(){
+  var S = [
+    { label: 'Doctor appointment', wc: false,
+      ask: 'Can you schedule Mom’s checkup with Dr. Lin?',
+      outcome: 'One text from you. Booking to follow-up, handled.',
+      stats: [['Your time','1 text'],['Handled over','About 2 weeks'],['Updates','To you and Mom, in each language']],
+      steps: [
+        ['2 minutes later','“On it. We’ll have a time for you this afternoon.”','We confirm right away, then message Mom in WeChat to ask which days work best for her.'],
+        ['3 hours later','Booked with Dr. Lin','We matched Mom’s schedule with Dr. Lin’s openings and booked Tuesday at 10:30 AM. Mom confirmed in WeChat. All done.'],
+        ['1 hour before the visit','Reminder and directions','Address, parking, which entrance, and what to bring, sent to Mom in Chinese. Dad gets it too, since he’s driving.'],
+        ['30 minutes after the visit','“How did it go?”','We check in with Mom: how was the visit, and is there anything she’d like us to follow up on with Dr. Lin?'],
+        ['3 days later','Lab results are in','Her results posted to MyChart. We send a plain-English summary to you, and the same summary in Chinese to Mom.'],
+        ['1 hour later','Follow-up booked','Mom has a question about one result. We pass it to Dr. Lin’s office and book a quick follow-up in 2 days.']
+      ] },
+    { label: 'Medicare plan change', wc: false,
+      ask: 'Mom and Dad got a letter that Renown and Kaiser are changing their Medicare plan. What do they need to do?',
+      outcome: 'A new plan chosen before the deadline, with their doctors still covered.',
+      stats: [['Your time','1 text, 1 call'],['Handled over','About 3 weeks'],['Deadline','Met, well before Dec 7']],
+      steps: [
+        ['10 minutes later','“Got it. Nothing is due today.”','We read the letter and explain it in plain English: their plan is now run jointly by Renown and Kaiser, new options start next year, and open enrollment ends December 7.'],
+        ['2 hours later','Mom & Dad, reassured','A short WeChat message and voice note in Chinese, so the letter doesn’t worry them, plus a heads-up to ignore sales calls in the meantime.'],
+        ['2 days later','Their doctors and medications, listed','We pull their current doctors, specialists, and prescriptions from MyChart so every option can be checked against what they actually use.'],
+        ['1 week later','Options, side by side','For each new plan: are Dr. Lin and their specialists in network, are their prescriptions covered, and what will it cost? Then we book a free call with a Nevada SHIP Medicare counselor. We don’t pick for them.'],
+        ['5 days later','Decision made, together','A call with you, Mom, Dad, and the counselor, with us translating. They choose the plan that keeps their doctors.'],
+        ['1 day later','Enrolled and confirmed','We help them enroll, save the confirmation number, and send you a one-page summary of what changes and when.'],
+        ['When the new cards arrive','Updated everywhere','We give the new insurance info to their pharmacy and doctors’ offices, so nothing gets denied in January.']
+      ] },
+    { label: 'Broken appliance', wc: true,
+      ask: '吸尘器坏了，开不了机。 (The vacuum broke. It won’t turn on.)',
+      outcome: 'A new vacuum for $0, and Dad never left the house.',
+      stats: [['Your time','None'],['Handled over','11 days'],['Saved','About $300']],
+      steps: [
+        ['10 minutes later','Quick troubleshooting','We walk Dad through three simple checks in Chinese, with photos: charging light, filter, brush roller.'],
+        ['3 hours later','Still under warranty','From his receipt photo: bought 8 months ago, covered by the 1-year warranty.'],
+        ['1 day later','Warranty claim filed','Case number in hand, replacement expected in 7–10 days. You get a heads-up so you’re in the loop.'],
+        ['1 day later','Returned from his front door','Prepaid label printed and a UPS pickup scheduled, with step-by-step instructions in Chinese.'],
+        ['6 days later','Replacement on the way','Tracking and delivery date sent to Dad.'],
+        ['2 days later','Working again','Dad sends a quick video of the new vacuum running. Total cost: $0.']
+      ] }
+  ];
+  var tabs = document.getElementById('scenTabs');
+  if (!tabs) return;
+  function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  var btns = S.map(function(s, i){
+    var b = el('button', 'scen-tab', s.label);
+    b.type = 'button'; b.setAttribute('role', 'tab');
+    b.addEventListener('click', function(){ show(i); });
+    tabs.appendChild(b); return b;
+  });
+  function show(i){
+    var s = S[i];
+    btns.forEach(function(b, j){ b.setAttribute('aria-selected', j === i ? 'true' : 'false'); });
+    var ask = document.getElementById('scenAsk');
+    ask.textContent = s.ask; ask.className = 'scen-bubble' + (s.wc ? ' wc' : '');
+    document.getElementById('scenOutcome').textContent = s.outcome;
+    var st = document.getElementById('scenStats'); st.innerHTML = '';
+    s.stats.forEach(function(r){ var d = el('div'); d.appendChild(el('span', null, r[0])); d.appendChild(el('span', null, r[1])); st.appendChild(d); });
+    var ol = document.getElementById('scenSteps'); ol.innerHTML = '';
+    s.steps.forEach(function(r){
+      var li = el('li'), rail = el('div', 'scen-rail'), t = el('div', 'scen-txt');
+      rail.appendChild(el('span', 'scen-dot')); rail.appendChild(el('span', 'scen-line'));
+      t.appendChild(el('span', 'scen-when', r[0])); t.appendChild(el('span', 'scen-title', r[1])); t.appendChild(el('span', 'scen-detail', r[2]));
+      li.appendChild(rail); li.appendChild(t); ol.appendChild(li);
+    });
+  }
+  show(0);
 })();
 
 /* Fade sections in as they scroll into view */

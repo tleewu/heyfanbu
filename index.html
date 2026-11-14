@@ -468,41 +468,28 @@ document.querySelectorAll('[data-contact]').forEach(function(a){
 (function(){
   var S = [
     { label: 'Doctor appointment', wc: false,
-      ask: 'Can you schedule Mom’s annual checkup with Dr. Lin?',
-      outcome: 'One text from you. Booking to follow-up, handled.',
-      stats: [['Your time','1 text'],['Handled over','About 2 weeks'],['Updates','To you and Mom, in each language']],
+      ask: 'Can you schedule Mom’s annual checkup appointment with Dr. Lin?',
+      outcome: '1 text from you. Booking to follow-up handled over 2 weeks between your parents & their doctor. All with minimal latency, saving you 2-3 hours.',
+      stats: [],
       steps: [
-        ['2 minutes later','“On it. We’ll have a time for you this afternoon.”','We confirm right away, then message Mom in WeChat to ask which days work best for her.'],
-        ['3 hours later','Booked with Dr. Lin','We matched Mom’s schedule with Dr. Lin’s openings and booked Tuesday at 10:30 AM. Mom confirmed in WeChat. All done.'],
-        ['1 hour before the visit','Reminder and directions','Address, parking, which entrance, and what to bring, sent to Mom in Chinese. Dad gets it too, since he’s driving.'],
+        ['2 minutes later','Confirmation Text','After you message us, we’ll let you know we received it and we start to get to work.'],
+        ['3 hours later','Appointment Booked FYI Text','We coordinated with Mom and Dr. Lin. Mom is booked for Tuesday at 10:30 AM, all confirmed through WeChat.'],
+        ['Night before appointment','Reminder Text to Mom','Mom gets everything she needs for tomorrow’s appointment: address, parking, what to bring, and what not to eat in the morning. Dad gets it too, since he’s driving.'],
         ['30 minutes after the visit','“How did it go?”','We check in with Mom: how was the visit, and is there anything she’d like us to follow up on with Dr. Lin?'],
-        ['3 days later','Lab results are in','Her results posted to MyChart. We send a plain-English summary to you, and the same summary in Chinese to Mom.'],
-        ['1 hour later','Follow-up booked','Mom has a question about one result. We pass it to Dr. Lin’s office and book a quick follow-up in 2 days.']
+        ['3 days later','Lab results are in','Dr. Lin just posted her lab results to MyChart. A summary to you and to Mom.'],
+        ['1 hour later','Follow-up booked','Mom has a question about a result. We pass it to Dr. Lin’s office and book a quick follow-up in 2 days.']
       ] },
-    { label: 'Medicare plan change', wc: false,
-      ask: 'Mom and Dad got a letter that Renown and Kaiser are changing their Medicare plan. What do they need to do?',
-      outcome: 'A new plan chosen before the deadline, with their doctors still covered.',
-      stats: [['Your time','1 text, 1 call'],['Handled over','About 3 weeks'],['Deadline','Met, well before Dec 7']],
+    { label: 'Medicare plan change', wc: true,
+      ask: 'I just got this letter in the mail. Something about my healthcare plan changing, I don’t know?',
+      outcome: '1 text from Dad. A new plan chosen before the deadline, with their doctors still covered, handled over 3 weeks. All saving you 5-6 hours.',
+      stats: [],
       steps: [
-        ['10 minutes later','“Got it. Nothing is due today.”','We read the letter and explain it in plain English: their plan is now run jointly by Renown and Kaiser, new options start next year, and open enrollment ends December 7.'],
-        ['2 hours later','Mom & Dad, reassured','A short WeChat message and voice note in Chinese, so the letter doesn’t worry them, plus a heads-up to ignore sales calls in the meantime.'],
-        ['2 days later','Their doctors and medications, listed','We pull their current doctors, specialists, and prescriptions from MyChart so every option can be checked against what they actually use.'],
-        ['1 week later','Options, side by side','For each new plan: are Dr. Lin and their specialists in network, are their prescriptions covered, and what will it cost? Then we book a free call with a Nevada SHIP Medicare counselor. We don’t pick for them.'],
-        ['5 days later','Decision made, together','A call with you, Mom, Dad, and the counselor, with us translating. They choose the plan that keeps their doctors.'],
+        ['20 minutes later','Root-cause Analysis','We read the letter: their plan is now run jointly by Renown and Kaiser, new options start next year, and open enrollment ends December 7.'],
+        ['30 minutes later','Mom & Dad, reassured','A short WeChat message and voice note in Chinese, so the letter doesn’t worry them, plus next steps. An FYI text gets sent to you as well.'],
+        ['2 days later','Options, side by side','We pull their current doctors, specialists, and prescriptions from MyChart. For each new plan: are doctors in network, are prescriptions covered, and what will it cost?'],
+        ['3 days later','Decision made, together','After thinking through the various options, confirmation between you, Mom, Dad, and the Medicare counselor on the best plan.'],
         ['1 day later','Enrolled and confirmed','We help them enroll, save the confirmation number, and send you a one-page summary of what changes and when.'],
-        ['When the new cards arrive','Updated everywhere','We give the new insurance info to their pharmacy and doctors’ offices, so nothing gets denied in January.']
-      ] },
-    { label: 'Broken appliance', wc: true,
-      ask: '吸尘器坏了，开不了机。 (The vacuum broke. It won’t turn on.)',
-      outcome: 'A new vacuum for $0, and Dad never left the house.',
-      stats: [['Your time','None'],['Handled over','11 days'],['Saved','About $300']],
-      steps: [
-        ['10 minutes later','Quick troubleshooting','We walk Dad through three simple checks in Chinese, with photos: charging light, filter, brush roller.'],
-        ['3 hours later','Still under warranty','From his receipt photo: bought 8 months ago, covered by the 1-year warranty.'],
-        ['1 day later','Warranty claim filed','Case number in hand, replacement expected in 7–10 days. You get a heads-up so you’re in the loop.'],
-        ['1 day later','Returned from his front door','Prepaid label printed and a UPS pickup scheduled, with step-by-step instructions in Chinese.'],
-        ['6 days later','Replacement on the way','Tracking and delivery date sent to Dad.'],
-        ['2 days later','Working again','Dad sends a quick video of the new vacuum running. Total cost: $0.']
+        ['When the new cards arrive','New insurance card, updated everywhere','We give the new insurance info to their pharmacy and doctors’ offices, so nothing gets denied in the new year.']
       ] }
   ];
   var tabs = document.getElementById('scenTabs');

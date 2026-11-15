@@ -97,6 +97,11 @@ h1 em{color:var(--accent)}
 .scen-bubble.wc{background:#95EC69;color:#1F1F1F;border-radius:6px}
 .scen-rule{height:1px;background:#EFEAE3}
 .scen-outcome{font-family:var(--serif);font-weight:300;font-size:26px;line-height:1.3;color:var(--heading);text-wrap:balance}
+.scen-voice{display:flex;align-items:center;gap:10px;width:62%;min-width:180px;justify-content:space-between}
+.scen-voice svg{flex:none}
+.scen-dur{font-size:15px}
+.scen-trans{align-self:flex-end;max-width:92%;margin-top:-10px;font-size:14px;line-height:1.5;color:var(--body);text-align:right}
+.scen-trans b{font-weight:600;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:#C98A3C;display:block;margin-bottom:2px}
 .scen-from{align-self:flex-end;font-size:12px;letter-spacing:1px;color:var(--body);margin-bottom:-10px}
 .scen-figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border-top:1px solid #EFEAE3;padding-top:18px}
 .scen-figs div{display:flex;flex-direction:column;gap:2px}
@@ -312,6 +317,7 @@ footer{padding-block:64px 44px;text-align:center}
         <span class="scen-label">The ask</span>
         <span class="scen-from" id="scenFrom"></span>
         <span class="scen-bubble" id="scenAsk"></span>
+        <p class="scen-trans" id="scenTrans" hidden></p>
         <div class="scen-rule"></div>
         <span class="scen-label">The &ldquo;Peace of Mind&rdquo; Outcome</span>
         <p class="scen-outcome" id="scenOutcome"></p>
@@ -514,9 +520,9 @@ document.querySelectorAll('[data-contact]').forEach(function(a){
         ['1 hour later','Follow-up booked','Mom has a question about a result. We pass it to Dr. Lin’s office and book a quick follow-up in 2 days.']
       ] },
     { label: 'Medicare plan change', wc: true, from: 'Dad · WeChat',
-      ask: 'I just got this letter in the mail. Something about my healthcare plan changing, I don’t know?',
+      voice: 14, ask: 'I just got this letter in the mail. Something about my healthcare plan changing, I don’t know?',
       outcome: 'A new plan chosen before the deadline, with their doctors still covered.',
-      figs: [['1 text','from Dad'],['3 weeks','start to finish'],['5–6 hrs','saved for you']],
+      figs: [['1 voice note','from Dad'],['3 weeks','start to finish'],['5–6 hrs','saved for you']],
       steps: [
         ['20 minutes later','Letter decoded','We read the letter: their plan is now run jointly by Renown and Kaiser, new options start next year, and open enrollment ends December 7.'],
         ['30 minutes later','Mom & Dad, reassured','A short WeChat message and voice note in Chinese, so the letter doesn’t worry them, plus next steps. An FYI text gets sent to you as well.'],
@@ -525,17 +531,15 @@ document.querySelectorAll('[data-contact]').forEach(function(a){
         ['1 day later','Enrolled and confirmed','We help them enroll, save the confirmation number, and send you a one-page summary of what changes and when.'],
         ['When the new cards arrive','New insurance card, updated everywhere','We give the new insurance info to their pharmacy and doctors’ offices, so nothing gets denied in the new year.']
       ] },
-    { label: 'New phone setup', wc: false, from: 'You · iMessage',
-      ask: 'Mom just got a new iPhone. Can you help her get everything set up?',
-      outcome: 'Mom’s new phone, set up and feeling familiar, without a trip to the store.',
-      figs: [['1 text','from you'],['3 days','start to finish'],['3–4 hrs','saved for you']],
+    { label: 'Tech setup', wc: false, from: 'You · iMessage',
+      ask: 'Mom needs help sending a photo to her friend. Can you figure this out?',
+      outcome: 'Mom sends photos on her own now, and knows exactly who to ask next time.',
+      figs: [['1 text','from you'],['2 days','start to finish'],['1–2 hrs','saved for you']],
       steps: [
-        ['15 minutes later','Video call booked','We set up a video call with Mom for that afternoon, in Chinese, at a time that works for her.'],
-        ['3 hours later','Moved over, together','On the call, we walk Mom through moving her WeChat chats, photos, and contacts from her old phone, step by step.'],
-        ['Same call','Apps back, safely','MyChart, her pharmacy app, and her bank app signed back in by Mom, with verification codes now going to her new phone.'],
-        ['Same call','A home screen she knows','Bigger text, her favorite apps on the first screen, and a one-tap shortcut to FaceTime you.'],
-        ['2 days later','Quick check-in','Mom forgot how to send a voice message in WeChat. We send her a 20-second video showing exactly how.'],
-        ['1 day later','Old phone wiped','We help her back up and erase the old phone, ready to trade in or pass on.']
+        ['5 minutes later','On it','We message Mom in WeChat to ask which photo, which friend, and when she’s free for a quick call.'],
+        ['1 hour later','Sent, together','On a short video call in Chinese, we walk Mom through it: open the photo, tap share, pick her friend. Photo sent!'],
+        ['Same call','A how-to she can rewatch','We send Mom a 30-second screen recording with Chinese captions, so next time she can do it on her own.'],
+        ['2 days later','Quick check-in','Mom sent two more photos by herself. We ask if anything else on her phone is tricky, and make her text a little bigger while we’re at it.']
       ] }
   ];
   var tabs = document.getElementById('scenTabs');
@@ -568,7 +572,13 @@ document.querySelectorAll('[data-contact]').forEach(function(a){
     btns.forEach(function(b, j){ b.setAttribute('aria-selected', j === i ? 'true' : 'false'); });
     document.getElementById('scenFrom').textContent = s.from;
     var ask = document.getElementById('scenAsk');
-    ask.textContent = s.ask; ask.className = 'scen-bubble' + (s.wc ? ' wc' : '');
+    ask.className = 'scen-bubble' + (s.wc ? ' wc' : '');
+    var tr = document.getElementById('scenTrans');
+    if (s.voice) {
+      ask.innerHTML = '<span class="scen-voice" aria-label="Voice message, ' + s.voice + ' seconds, in Chinese"><span class="scen-dur">' + s.voice + '&Prime;</span>' +
+        '<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 9h.01"/><path d="M8 5.5a5 5 0 0 1 0 7"/><path d="M12 2.5a9.5 9.5 0 0 1 0 13"/></svg></span>';
+      tr.innerHTML = '<b>Translated from Chinese</b>'; tr.appendChild(document.createTextNode('“' + s.ask + '”')); tr.hidden = false;
+    } else { ask.textContent = s.ask; tr.hidden = true; }
     document.getElementById('scenOutcome').textContent = s.outcome;
     var fg = document.getElementById('scenFigs'); fg.innerHTML = '';
     s.figs.forEach(function(r){ var d = el('div'); d.appendChild(el('span', 'scen-fig', r[0])); d.appendChild(el('span', 'scen-figl', r[1])); fg.appendChild(d); });

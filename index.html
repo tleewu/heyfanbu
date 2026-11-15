@@ -105,6 +105,18 @@ h1 em{color:var(--accent)}
 .scen-more{display:none;align-self:flex-start;margin-left:36px;background:none;border:0;padding:4px 0;font-family:var(--sans);font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#C98A3C;cursor:pointer}
 .scen-more:focus-visible{outline:2px solid var(--heading);outline-offset:3px}
 .scen-tl{min-width:0;display:flex;flex-direction:column}
+.scen-nav{display:none;align-items:center;justify-content:center;gap:16px;margin-top:20px}
+.scen-nav button{width:40px;height:40px;border-radius:50%;border:1.5px solid #F1DFC6;background:#fff;color:#C98A3C;font-size:18px;line-height:1;cursor:pointer}
+.scen-nav button:disabled{opacity:.35;cursor:default}
+.scen-dots{display:flex;gap:8px}
+.scen-dots span{width:8px;height:8px;border-radius:50%;background:#EAE3D9;transition:background .2s,width .2s}
+.scen-dots span.on{background:var(--accent);width:22px;border-radius:4px}
+.scen-hint{display:none;text-align:center;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--body);margin-top:10px}
+@keyframes scenInR{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes scenInL{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+.scen-body.in-r{animation:scenInR .3s ease}
+.scen-body.in-l{animation:scenInL .3s ease}
+@media (prefers-reduced-motion:reduce){.scen-body.in-r,.scen-body.in-l{animation:none}}
 .scen-steps{list-style:none;display:flex;flex-direction:column}
 .scen-steps li{display:flex;gap:20px}
 .scen-rail{display:flex;flex-direction:column;align-items:center;flex:none;width:16px}
@@ -243,7 +255,12 @@ footer{padding-block:64px 44px;text-align:center}
   .cols{grid-template-columns:1fr;gap:48px;margin-top:48px}
   .scen-body{grid-template-columns:1fr;gap:40px;margin-top:32px}
   .scen-card{padding:24px}
-  .scen-tab{flex:1 1 100%;max-width:344px}
+  .scen-tabs{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding-inline:16px;gap:8px;margin-top:32px}
+  .scen-tabs::-webkit-scrollbar{display:none}
+  .scen-tab{flex:none;min-height:40px;padding:0 16px;font-size:11px;letter-spacing:1.6px}
+  .scen-nav{display:flex}
+  .scen-hint{display:block}
+  .scen-body{touch-action:pan-y;margin-top:24px}
   .scen-steps.collapsed li:nth-child(n+4){display:none}
   .scen-steps.collapsed li:nth-child(3) .scen-line{background:linear-gradient(#EAE3D9,transparent)}
   .scen-steps.collapsed + .scen-more{display:block}
@@ -290,7 +307,9 @@ footer{padding-block:64px 44px;text-align:center}
     <h2 class="reveal"><em>&ldquo;Peace of mind&rdquo;</em> that Mom &amp; Dad are taken care of</h2>
     <p class="lede reveal">You text once. We handle the rest.</p>
     <div class="scen-tabs reveal" role="tablist" aria-label="Example requests" id="scenTabs"></div>
-    <div class="scen-body reveal">
+    <div class="scen-nav" aria-hidden="true"><button type="button" id="scenPrev" tabindex="-1">&#8249;</button><div class="scen-dots" id="scenDots"></div><button type="button" id="scenNext" tabindex="-1">&#8250;</button></div>
+    <p class="scen-hint">Swipe to see more</p>
+    <div class="scen-body reveal" id="scenBody">
       <div class="scen-card" role="tabpanel">
         <span class="scen-label">The ask</span>
         <span class="scen-from" id="scenFrom"></span>
@@ -526,14 +545,28 @@ document.querySelectorAll('[data-contact]').forEach(function(a){
   function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   var ol = document.getElementById('scenSteps'), more = document.getElementById('scenMore');
   more.addEventListener('click', function(){ ol.classList.remove('collapsed'); });
+  var cur = 0, body = document.getElementById('scenBody'), dots = document.getElementById('scenDots');
+  var prev = document.getElementById('scenPrev'), next = document.getElementById('scenNext');
+  S.forEach(function(){ dots.appendChild(el('span')); });
+  function go(i){ if (i < 0 || i >= S.length || i === cur) return; var dir = i > cur ? 'in-r' : 'in-l'; show(i);
+    body.classList.remove('in-r','in-l'); void body.offsetWidth; body.classList.add(dir); }
+  prev.addEventListener('click', function(){ go(cur - 1); });
+  next.addEventListener('click', function(){ go(cur + 1); });
+  var x0 = null, y0 = 0;
+  body.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, {passive:true});
+  body.addEventListener('touchend', function(e){ if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) go(cur + (dx < 0 ? 1 : -1)); }, {passive:true});
   var btns = S.map(function(s, i){
     var b = el('button', 'scen-tab', s.label);
     b.type = 'button'; b.setAttribute('role', 'tab');
-    b.addEventListener('click', function(){ show(i); });
+    b.addEventListener('click', function(){ go(i); });
     tabs.appendChild(b); return b;
   });
   function show(i){
-    var s = S[i];
+    var s = S[i]; cur = i;
+    Array.prototype.forEach.call(dots.children, function(d, j){ d.className = j === i ? 'on' : ''; });
+    prev.disabled = i === 0; next.disabled = i === S.length - 1;
+    if (btns[i] && tabs.scrollWidth > tabs.clientWidth) tabs.scrollTo({left: btns[i].offsetLeft - 16, behavior: 'smooth'});
     btns.forEach(function(b, j){ b.setAttribute('aria-selected', j === i ? 'true' : 'false'); });
     document.getElementById('scenFrom').textContent = s.from;
     var ask = document.getElementById('scenAsk');

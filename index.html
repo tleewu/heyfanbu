@@ -97,8 +97,14 @@ h1 em{color:var(--accent)}
 .scen-bubble.wc{background:#95EC69;color:#1F1F1F;border-radius:6px}
 .scen-rule{height:1px;background:#EFEAE3}
 .scen-outcome{font-family:var(--serif);font-weight:300;font-size:26px;line-height:1.3;color:var(--heading);text-wrap:balance}
-.scen-stats div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px solid #EFEAE3;font-size:15px}
-.scen-stats span:last-child{color:var(--heading);font-weight:600;text-align:right}
+.scen-from{align-self:flex-end;font-size:12px;letter-spacing:1px;color:var(--body);margin-bottom:-10px}
+.scen-figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border-top:1px solid #EFEAE3;padding-top:18px}
+.scen-figs div{display:flex;flex-direction:column;gap:2px}
+.scen-fig{font-family:var(--serif);font-weight:300;font-size:24px;line-height:1.2;color:var(--accent)}
+.scen-figl{font-size:13px;line-height:1.35;color:var(--body)}
+.scen-more{display:none;align-self:flex-start;margin-left:36px;background:none;border:0;padding:4px 0;font-family:var(--sans);font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#C98A3C;cursor:pointer}
+.scen-more:focus-visible{outline:2px solid var(--heading);outline-offset:3px}
+.scen-tl{min-width:0;display:flex;flex-direction:column}
 .scen-steps{list-style:none;display:flex;flex-direction:column}
 .scen-steps li{display:flex;gap:20px}
 .scen-rail{display:flex;flex-direction:column;align-items:center;flex:none;width:16px}
@@ -238,6 +244,9 @@ footer{padding-block:64px 44px;text-align:center}
   .scen-body{grid-template-columns:1fr;gap:40px;margin-top:32px}
   .scen-card{padding:24px}
   .scen-tab{flex:1 1 100%;max-width:344px}
+  .scen-steps.collapsed li:nth-child(n+4){display:none}
+  .scen-steps.collapsed li:nth-child(3) .scen-line{background:linear-gradient(#EAE3D9,transparent)}
+  .scen-steps.collapsed + .scen-more{display:block}
   .num{font-size:48px}
   .cols h3,.sub-h{font-size:28px}
   .cols h3{margin-top:16px}
@@ -284,13 +293,17 @@ footer{padding-block:64px 44px;text-align:center}
     <div class="scen-body reveal">
       <div class="scen-card" role="tabpanel">
         <span class="scen-label">The ask</span>
+        <span class="scen-from" id="scenFrom"></span>
         <span class="scen-bubble" id="scenAsk"></span>
         <div class="scen-rule"></div>
         <span class="scen-label">The &ldquo;Peace of Mind&rdquo; Outcome</span>
         <p class="scen-outcome" id="scenOutcome"></p>
-        <div class="scen-stats" id="scenStats"></div>
+        <div class="scen-figs" id="scenFigs"></div>
       </div>
-      <ol class="scen-steps" id="scenSteps"></ol>
+      <div class="scen-tl">
+        <ol class="scen-steps" id="scenSteps"></ol>
+        <button type="button" class="scen-more" id="scenMore"></button>
+      </div>
     </div>
   </div>
 </section>
@@ -471,34 +484,48 @@ document.querySelectorAll('[data-contact]').forEach(function(a){
 /* Real life scenarios: tabbed timelines */
 (function(){
   var S = [
-    { label: 'Doctor appointment', wc: false,
+    { label: 'Doctor appointment', wc: false, from: 'You · iMessage',
       ask: 'Can you schedule Mom’s annual checkup appointment with Dr. Lin?',
-      outcome: '1 text from you. Booking to follow-up handled over 2 weeks between your parents & their doctor. All with minimal latency, saving you 2-3 hours.',
-      stats: [],
+      outcome: 'Booking to follow-up, handled between your parents & their doctor.',
+      figs: [['1 text','from you'],['2 weeks','start to finish'],['2–3 hrs','saved for you']],
       steps: [
-        ['2 minutes later','Confirmation Text','After you message us, we’ll let you know we received it and we start to get to work.'],
-        ['3 hours later','Appointment Booked FYI Text','We coordinated with Mom and Dr. Lin. Mom is booked for Tuesday at 10:30 AM, all confirmed through WeChat.'],
-        ['Night before appointment','Reminder Text to Mom','Mom gets everything she needs for tomorrow’s appointment: address, parking, what to bring, and what not to eat in the morning. Dad gets it too, since he’s driving.'],
+        ['2 minutes later','On it','After you message us, we’ll let you know we received it and we start to get to work.'],
+        ['3 hours later','Booked: Tuesday, 10:30 AM','We coordinated with Mom and Dr. Lin. Mom is booked for Tuesday at 10:30 AM, all confirmed through WeChat.'],
+        ['Night before appointment','Mom’s ready for tomorrow','Mom gets everything she needs for tomorrow’s appointment: address, parking, what to bring, and what not to eat in the morning. Dad gets it too, since he’s driving.'],
         ['30 minutes after the visit','“How did it go?”','We check in with Mom: how was the visit, and is there anything she’d like us to follow up on with Dr. Lin?'],
         ['3 days later','Lab results are in','Dr. Lin just posted her lab results to MyChart. A summary to you and to Mom.'],
         ['1 hour later','Follow-up booked','Mom has a question about a result. We pass it to Dr. Lin’s office and book a quick follow-up in 2 days.']
       ] },
-    { label: 'Medicare plan change', wc: true,
+    { label: 'Medicare plan change', wc: true, from: 'Dad · WeChat',
       ask: 'I just got this letter in the mail. Something about my healthcare plan changing, I don’t know?',
-      outcome: '1 text from Dad. A new plan chosen before the deadline, with their doctors still covered, handled over 3 weeks. All saving you 5-6 hours.',
-      stats: [],
+      outcome: 'A new plan chosen before the deadline, with their doctors still covered.',
+      figs: [['1 text','from Dad'],['3 weeks','start to finish'],['5–6 hrs','saved for you']],
       steps: [
-        ['20 minutes later','Root-cause Analysis','We read the letter: their plan is now run jointly by Renown and Kaiser, new options start next year, and open enrollment ends December 7.'],
+        ['20 minutes later','Letter decoded','We read the letter: their plan is now run jointly by Renown and Kaiser, new options start next year, and open enrollment ends December 7.'],
         ['30 minutes later','Mom & Dad, reassured','A short WeChat message and voice note in Chinese, so the letter doesn’t worry them, plus next steps. An FYI text gets sent to you as well.'],
         ['2 days later','Options, side by side','We pull their current doctors, specialists, and prescriptions from MyChart. For each new plan: are doctors in network, are prescriptions covered, and what will it cost?'],
         ['3 days later','Decision made, together','After thinking through the various options, confirmation between you, Mom, Dad, and the Medicare counselor on the best plan.'],
         ['1 day later','Enrolled and confirmed','We help them enroll, save the confirmation number, and send you a one-page summary of what changes and when.'],
         ['When the new cards arrive','New insurance card, updated everywhere','We give the new insurance info to their pharmacy and doctors’ offices, so nothing gets denied in the new year.']
+      ] },
+    { label: 'New phone setup', wc: false, from: 'You · iMessage',
+      ask: 'Mom just got a new iPhone. Can you help her get everything set up?',
+      outcome: 'Mom’s new phone, set up and feeling familiar, without a trip to the store.',
+      figs: [['1 text','from you'],['3 days','start to finish'],['3–4 hrs','saved for you']],
+      steps: [
+        ['15 minutes later','Video call booked','We set up a video call with Mom for that afternoon, in Chinese, at a time that works for her.'],
+        ['3 hours later','Moved over, together','On the call, we walk Mom through moving her WeChat chats, photos, and contacts from her old phone, step by step.'],
+        ['Same call','Apps back, safely','MyChart, her pharmacy app, and her bank app signed back in by Mom, with verification codes now going to her new phone.'],
+        ['Same call','A home screen she knows','Bigger text, her favorite apps on the first screen, and a one-tap shortcut to FaceTime you.'],
+        ['2 days later','Quick check-in','Mom forgot how to send a voice message in WeChat. We send her a 20-second video showing exactly how.'],
+        ['1 day later','Old phone wiped','We help her back up and erase the old phone, ready to trade in or pass on.']
       ] }
   ];
   var tabs = document.getElementById('scenTabs');
   if (!tabs) return;
   function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  var ol = document.getElementById('scenSteps'), more = document.getElementById('scenMore');
+  more.addEventListener('click', function(){ ol.classList.remove('collapsed'); });
   var btns = S.map(function(s, i){
     var b = el('button', 'scen-tab', s.label);
     b.type = 'button'; b.setAttribute('role', 'tab');
@@ -508,12 +535,14 @@ document.querySelectorAll('[data-contact]').forEach(function(a){
   function show(i){
     var s = S[i];
     btns.forEach(function(b, j){ b.setAttribute('aria-selected', j === i ? 'true' : 'false'); });
+    document.getElementById('scenFrom').textContent = s.from;
     var ask = document.getElementById('scenAsk');
     ask.textContent = s.ask; ask.className = 'scen-bubble' + (s.wc ? ' wc' : '');
     document.getElementById('scenOutcome').textContent = s.outcome;
-    var st = document.getElementById('scenStats'); st.innerHTML = '';
-    s.stats.forEach(function(r){ var d = el('div'); d.appendChild(el('span', null, r[0])); d.appendChild(el('span', null, r[1])); st.appendChild(d); });
-    var ol = document.getElementById('scenSteps'); ol.innerHTML = '';
+    var fg = document.getElementById('scenFigs'); fg.innerHTML = '';
+    s.figs.forEach(function(r){ var d = el('div'); d.appendChild(el('span', 'scen-fig', r[0])); d.appendChild(el('span', 'scen-figl', r[1])); fg.appendChild(d); });
+    ol.innerHTML = ''; ol.className = 'scen-steps collapsed';
+    more.textContent = 'See all ' + s.steps.length + ' steps ↓';
     s.steps.forEach(function(r){
       var li = el('li'), rail = el('div', 'scen-rail'), t = el('div', 'scen-txt');
       rail.appendChild(el('span', 'scen-dot')); rail.appendChild(el('span', 'scen-line'));

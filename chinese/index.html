@@ -290,11 +290,11 @@ footer{padding-block:64px 44px;text-align:center}
 .hero-text .center{margin-top:28px;justify-content:flex-start;text-align:left}
 .hero-text .offer{text-align:left}
 @media (max-width:1100px){.hero-grid{grid-template-columns:1fr;gap:32px}.hero-media{order:2}.hero-text h1,.hero-text .copy,.hero-text .copy p,.hero-text .offer{text-align:center}.hero-text .copy p{margin-inline:auto}.hero-text .center{justify-content:center;text-align:center}}
-.o4{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:8px 16px;border:1px solid #E6D8C8;border-radius:999px;font-size:13px;color:var(--heading);line-height:1.2;background:#fff;text-decoration:none;transition:border-color .2s}
-.o4-zh{letter-spacing:2px}
-.o4-sep{width:1px;height:14px;background:#E6D8C8}
-.o4:hover{border-color:var(--accent)}
-.o4:focus-visible{outline:2px solid var(--heading);outline-offset:3px}
+.o4{display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:14px;color:var(--heading);line-height:1.4;text-decoration:none;transition:color .2s}
+.o4-chev{flex:none;transition:transform .2s}
+.o4:hover{color:#C98A3C}
+.o4:hover .o4-chev{transform:translateY(2px)}
+.o4:focus-visible{outline:2px solid var(--heading);outline-offset:3px;border-radius:3px}
 @media (max-width:1100px){.hero-text .o4{display:flex;width:max-content;max-width:100%;margin-inline:auto}}
 .hero-media video{width:min(520px,100%);height:auto;display:block;mix-blend-mode:multiply}
 .hero.has-media{padding-block:56px 72px}
@@ -313,7 +313,7 @@ footer{padding-block:64px 44px;text-align:center}
     <h1 class="reveal" aria-label="We handle your Chinese parents’ doctor appointments, insurance paperwork, tech troubles, travel plans and entire to-do list, happily and proudly."><span aria-hidden="true">We handle your Chinese parents&rsquo; <span class="nw"><span class="rot" id="rot"><span class="on">doctor appointments</span><span>insurance paperwork</span><span>tech troubles</span><span>travel plans</span><span>entire to-do list</span></span>,</span> happily and proudly.</span></h1>
     <div class="copy reveal"><p>Fanbu is a human concierge that you just message. Your app, your language. Nothing to download, nothing to learn. We keep it simple so things get done.</p></div>
     <div class="center reveal"><a class="btn btn-solid js-try" href="#join"><span class="lbl">Try Fanbu for free</span></a></div>
-    <a class="o4" href="#story"><span class="o4-zh">由子女 · 为父母</span><span class="o4-sep" aria-hidden="true"></span><span>Our story &rarr;</span></a>
+    <a class="o4" href="#story">Made by the kids, for our parents <svg class="o4-chev" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div>
 </header>

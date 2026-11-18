@@ -500,6 +500,7 @@ footer{padding-block:64px 44px;text-align:center}
     <h2 class="reveal">Try Fanbu for free</h2>
     <p class="tf-lede reveal">Your first few requests are on us. No credit card, no catch. If you like how we did &amp; want more, we can talk about it then.</p>
     <form class="tryform reveal" id="tryForm" novalidate>
+      <input type="hidden" name="_subject" value="New Fanbu request (/chinese)">
       <label class="tf-field"><span>Your name</span><input type="text" name="name" autocomplete="name" required></label>
       <label class="tf-field"><span>Your phone number</span><input type="tel" name="phone" autocomplete="tel" inputmode="tel" required></label>
       <fieldset class="tf-field tf-modes">
@@ -659,7 +660,7 @@ document.querySelectorAll('[data-contact]').forEach(function(a){
 })();
 
 /* Try-for-free form. FORM_ENDPOINT = where submissions are sent (not connected yet). */
-var FORM_ENDPOINT = "";
+var FORM_ENDPOINT = "https://formspree.io/f/mrpqqdor";
 (function(){
   var form = document.getElementById('tryForm'); if (!form) return;
   var other = document.getElementById('tfOther'), otherBox = document.getElementById('tfOtherBox');

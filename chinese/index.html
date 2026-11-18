@@ -684,6 +684,9 @@ var FORM_ENDPOINT = "https://formspree.io/f/mrpqqdor";
       done.textContent = 'Sorry, our form isn\u2019t connected yet, so this wasn\u2019t sent. Please try again in a few minutes.'; done.hidden = false; return;
     }
     var btn = form.querySelector('.tf-submit'); btn.disabled = true;
+    var q = new URLSearchParams(window.location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){ var v = q.get(k); if (v) d.append(k, v); });
+    d.append('landing_page', window.location.href);
     fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Accept': 'application/json' }, body: d })
       .then(function(r){ if (!r.ok) throw 0;
         form.querySelectorAll('.tf-field,.tf-submit').forEach(function(x){ x.hidden = true; });

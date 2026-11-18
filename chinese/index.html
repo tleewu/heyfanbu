@@ -239,6 +239,33 @@ footer{padding-block:64px 44px;text-align:center}
 .contact a{color:var(--heading);text-decoration:none;border-bottom:1px solid #E3DFDA}
 .contact a:hover{color:var(--accent);border-color:var(--accent)}
 
+/* Try-for-free form */
+.tf-lede{max-width:560px;margin:16px auto 0;text-align:center;text-wrap:balance}
+.tryform{max-width:560px;margin:36px auto 0;display:flex;flex-direction:column;gap:22px;text-align:left;line-height:1.5}
+.tf-field{display:flex;flex-direction:column;gap:8px;border:0;min-width:0}
+.tf-field > span,.tf-field legend{font-size:13px;letter-spacing:1.6px;text-transform:uppercase;color:#C98A3C;padding:0}
+.tryform input[type=text],.tryform input[type=tel],.tryform textarea{width:100%;font:inherit;font-size:16px;font-weight:300;color:var(--heading);background:#fff;border:1.5px solid #EAE1D6;border-radius:8px;padding:12px 14px;transition:border-color .2s}
+.tryform textarea{resize:vertical;min-height:110px}
+@media (max-width:736px){.tryform textarea{min-height:230px}}
+.tryform input:focus,.tryform textarea:focus{outline:none;border-color:var(--accent)}
+.tryform ::placeholder{color:var(--muted)}
+.tf-checks{display:flex;flex-wrap:wrap;gap:10px}
+.tf-checks label{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;background:#fff;border:1.5px solid #EAE1D6;border-radius:999px;font-size:15px;color:var(--heading);cursor:pointer}
+.tf-checks label:has(input:checked){border-color:var(--accent)}
+.tf-checks input{-webkit-appearance:none;appearance:none;flex:none;width:18px;height:18px;margin:0;background:#fff;border:1.5px solid #D9CBBB;border-radius:4px;display:grid;place-content:center;cursor:pointer}
+.tf-checks input::after{content:"";width:5px;height:9px;border:solid var(--accent);border-width:0 2px 2px 0;transform:translateY(-1px) rotate(45deg) scale(0);transition:transform .12s}
+.tf-checks input:checked{border-color:var(--accent)}
+.tf-checks input:checked::after{transform:translateY(-1px) rotate(45deg) scale(1)}
+.tf-checks input:focus-visible{outline:2px solid var(--heading);outline-offset:2px}
+#tfOther{margin-top:10px}
+.tf-submit{align-self:center;border:0;cursor:pointer}
+.tf-err{color:#B5452F;font-size:14px;text-align:center}
+.tf-done{font-size:15px;color:var(--heading);text-align:center;background:#FFF6EA;border-radius:8px;padding:14px 16px}
+#join{background:var(--band)}
+#join .tryform input[type=text],#join .tryform input[type=tel],#join .tryform textarea{background:#FAF8F4;border-color:#E6DDD1}
+#join .tryform input:focus,#join .tryform textarea:focus{background:#fff;border-color:var(--accent)}
+#join .tf-checks label{background:#FAF8F4;border-color:#E6DDD1}
+#join .tf-checks label:has(input:checked){background:#fff;border-color:var(--accent)}
 /* Fade-in on scroll (the original uses Carrd's on-visible effect) */
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform .9s ease}
 .reveal.in{opacity:1;transform:none}
@@ -470,11 +497,27 @@ footer{padding-block:64px 44px;text-align:center}
 <!-- CLOSING CTA + FOOTER -->
 <footer id="join">
   <div class="wrap">
-    <h2 class="reveal">Not sure where to start?</h2>
-    <p class="reveal" style="text-align:center;margin-top:16px">If you don&rsquo;t use Fanbu (or only minimally), we&rsquo;ll proactively refund you. No questions asked.</p>
-    <div class="center reveal" style="margin-top:36px"><a class="btn btn-solid js-join" href="#join"><span class="lbl">Join founding pilot</span><span class="price"><span class="dot" aria-hidden="true">·</span> <s>$250</s>&nbsp;$100/mo</span></a></div>
-    <p class="fine" style="margin-top:56px">In an emergency, always call 911 first.</p>
-    <p class="fine">© 2026 Fanbu. All rights reserved.</p>
+    <h2 class="reveal">Try Fanbu for free</h2>
+    <p class="tf-lede reveal">Your first few requests are on us. No credit card, no catch. If you like how we did &amp; want more, we can talk about it then.</p>
+    <form class="tryform reveal" id="tryForm" novalidate>
+      <label class="tf-field"><span>Your name</span><input type="text" name="name" autocomplete="name" required></label>
+      <label class="tf-field"><span>Your phone number</span><input type="tel" name="phone" autocomplete="tel" inputmode="tel" required></label>
+      <fieldset class="tf-field tf-modes">
+        <legend>Your preferred mode of communication</legend>
+        <div class="tf-checks">
+          <label><input type="checkbox" name="mode" value="SMS"> SMS</label>
+          <label><input type="checkbox" name="mode" value="WhatsApp"> WhatsApp</label>
+          <label><input type="checkbox" name="mode" value="WeChat"> WeChat</label>
+          <label><input type="checkbox" name="mode" value="Other" id="tfOtherBox"> Other</label>
+        </div>
+        <input type="text" name="mode_other" id="tfOther" placeholder="Which one?" hidden>
+      </fieldset>
+      <label class="tf-field"><span>What do you want Fanbu to do?</span><textarea name="ask" rows="5" required placeholder="For example:&#10;&bull; Mom got a letter from her insurance and doesn&rsquo;t know what it means&#10;&bull; Book Dad&rsquo;s cardiology follow-up and remind him the night before&#10;&bull; Set up Mom&rsquo;s new phone so she can video call her sister in China"></textarea></label>
+      <p class="tf-err" id="tfErr" hidden></p>
+      <button type="submit" class="btn btn-solid tf-submit">Submit</button>
+      <p class="tf-done" id="tfDone" hidden></p>
+    </form>
+    <p class="fine" style="margin-top:56px">&copy; 2026 Fanbu. All rights reserved.</p>
   </div>
 </footer>
 
@@ -613,6 +656,37 @@ document.querySelectorAll('[data-contact]').forEach(function(a){
   ['touchstart','scroll','click'].forEach(function(e){ window.addEventListener(e, go, { once: true, passive: true }); });
   document.addEventListener('visibilitychange', function(){ if (!document.hidden) go(); });
   if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ es.forEach(function(en){ if (en.isIntersecting) go(); }); }).observe(v);
+})();
+
+/* Try-for-free form. FORM_ENDPOINT = where submissions are sent (not connected yet). */
+var FORM_ENDPOINT = "";
+(function(){
+  var form = document.getElementById('tryForm'); if (!form) return;
+  var other = document.getElementById('tfOther'), otherBox = document.getElementById('tfOtherBox');
+  var err = document.getElementById('tfErr'), done = document.getElementById('tfDone');
+  document.querySelectorAll('.js-try').forEach(function(b){ b.addEventListener('click', function(e){
+    e.preventDefault();
+    var target = document.getElementById('join');
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(function(){ var n = form.querySelector('input[name=name]'); if (n) n.focus({ preventScroll: true }); }, 700);
+  }); });
+  otherBox.addEventListener('change', function(){ other.hidden = !otherBox.checked; if (otherBox.checked) other.focus(); });
+  form.addEventListener('submit', function(e){
+    e.preventDefault(); err.hidden = true; done.hidden = true;
+    var d = new FormData(form), modes = d.getAll('mode');
+    if (!d.get('name').trim() || !d.get('phone').trim() || !d.get('ask').trim() || !modes.length) {
+      err.textContent = 'Please fill in every field and pick at least one way to reach you.'; err.hidden = false; return;
+    }
+    if (!FORM_ENDPOINT) {
+      done.textContent = 'Sorry, our form isn\u2019t connected yet, so this wasn\u2019t sent. Please try again in a few minutes.'; done.hidden = false; return;
+    }
+    var btn = form.querySelector('.tf-submit'); btn.disabled = true;
+    fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Accept': 'application/json' }, body: d })
+      .then(function(r){ if (!r.ok) throw 0;
+        form.querySelectorAll('.tf-field,.tf-submit').forEach(function(x){ x.hidden = true; });
+        done.textContent = 'Thank you! We got your request and will message you within a day.'; done.hidden = false; })
+      .catch(function(){ btn.disabled = false; err.textContent = 'Something went wrong sending that. Please try again.'; err.hidden = false; });
+  });
 })();
 
 /* Fade sections in as they scroll into view */
